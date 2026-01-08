@@ -1,8 +1,10 @@
 import numpy as np
 
-from load_data import load_raw_data, load_processed_data
-from preprocess import clean_data, encode_features, scale_features, load_scaler
-from model import load_model, evaluate_model
+from src import (
+    load_raw_data, load_processed_data,
+    clean_data, encode_features, scale_features, load_scaler,
+    load_model, evaluate_model
+)
 
 
 def test_complete_pipeline_from_raw_to_predictions():

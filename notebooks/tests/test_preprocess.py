@@ -8,8 +8,7 @@ Educational example showing:
 
 import pandas as pd
 
-from preprocess import clean_data, encode_features
-from load_data import load_raw_data
+from notebooks import clean_data, encode_features, load_raw_data
 
 
 def test_clean_data_removes_missing_values():

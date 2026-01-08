@@ -2,7 +2,7 @@ import tensorflow as tf
 import os
 from pathlib import Path
 
-from config import MODEL_CONFIG, MODEL_FILE, NUM_SPECIES
+from .config import MODEL_CONFIG, MODEL_FILE, NUM_SPECIES
 
 def create_mlp_model(input_shape: int) -> tf.keras.Model:
 

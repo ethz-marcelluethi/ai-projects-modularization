@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 import pickle
 from pathlib import Path
 
-from config import (
+from .config import (
     NUMERICAL_FEATURES, PROCESSED_DATA_FILE, TRAIN_TEST_FILE, TRAIN_CONFIG, SCALER_FILE
 )
 

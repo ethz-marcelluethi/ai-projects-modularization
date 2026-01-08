@@ -1,7 +1,7 @@
 import numpy as np
 from tensorflow import keras
 
-from model import load_model
+from notebooks import load_model
 
 
 def test_body_mass_increase_affects_species_prediction():

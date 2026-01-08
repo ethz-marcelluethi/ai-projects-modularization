@@ -8,7 +8,7 @@ Educational example showing:
 
 import pandas as pd
 
-from load_data import load_raw_data
+from src import load_raw_data
 
 
 def test_data_has_required_columns():

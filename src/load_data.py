@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 import os
 
-from config import PENGUINS_URL, RAW_DATA_FILE, PROCESSED_DATA_FILE
+from .config import PENGUINS_URL, RAW_DATA_FILE, PROCESSED_DATA_FILE
 
 
 def download_penguins_data(url: str = PENGUINS_URL, 

@@ -1,17 +1,21 @@
 import os
+from pathlib import Path
 
-DATA_DIR = "./data"
-RAW_DATA_DIR = "./data/raw"
-PROCESSED_DATA_DIR = "./data/processed"
-EXTERNAL_DATA_DIR = "data/external"
+# Base directory is workspace root (where src/ is located)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATA_DIR = BASE_DIR / "data"
+RAW_DATA_DIR = BASE_DIR / "data" / "raw"
+PROCESSED_DATA_DIR = BASE_DIR / "data" / "processed"
+EXTERNAL_DATA_DIR = BASE_DIR / "data" / "external"
 
 # Model directory
-MODELS_DIR = "./models"
+MODELS_DIR = BASE_DIR / "models"
 
 PENGUINS_URL = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv"
-RAW_DATA_FILE = f"{RAW_DATA_DIR}/penguins.csv"
-PROCESSED_DATA_FILE = f"{PROCESSED_DATA_DIR}/penguins_cleaned.csv"
-TRAIN_TEST_FILE = f"{PROCESSED_DATA_DIR}/penguins_train_test.pkl"
+RAW_DATA_FILE = str(RAW_DATA_DIR / "penguins.csv")
+PROCESSED_DATA_FILE = str(PROCESSED_DATA_DIR / "penguins_cleaned.csv")
+TRAIN_TEST_FILE = str(PROCESSED_DATA_DIR / "penguins_train_test.pkl")
 
 NUMERICAL_FEATURES = [
     'bill_length_mm',
@@ -22,7 +26,7 @@ NUMERICAL_FEATURES = [
 
 NUM_SPECIES = 3
 
-SCALER_FILE = f"{MODELS_DIR}/scaler.pkl"
+SCALER_FILE = str(MODELS_DIR / "scaler.pkl")
 
 # Model configuration
 MODEL_CONFIG = {
@@ -45,4 +49,4 @@ TRAIN_CONFIG = {
 }
 
 # Model artifact
-MODEL_FILE = f"{MODELS_DIR}/penguin_classifier.keras"
+MODEL_FILE = str(MODELS_DIR / "penguin_classifier.keras")
