@@ -29,15 +29,26 @@ def encode_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 
-def scale_features(df: pd.DataFrame, fit: bool = True) -> tuple[pd.DataFrame, StandardScaler]:
-    
-    df_scaled = df.copy()        
-    scaler = StandardScaler()
+def scale_features(df: pd.DataFrame, scaler: StandardScaler = None, fit: bool = True) -> tuple[pd.DataFrame, StandardScaler]:
+
+    df_scaled = df.copy()
     
     if fit:
+        # Fit a new scaler
+        scaler = StandardScaler()
         scaler.fit(df_scaled[NUMERICAL_FEATURES])
+        
+        # Save the scaler when fitting
+        os.makedirs(Path(SCALER_FILE).parent, exist_ok=True)
+        with open(SCALER_FILE, 'wb') as f:
+            pickle.dump(scaler, f)
+        print(f"Scaler saved to {SCALER_FILE}")
+    else:
+        # Use provided scaler
+        if scaler is None:
+            raise ValueError("Must provide scaler when fit=False")
     
-    df_scaled[NUMERICAL_FEATURES] = scaler.transform(df_scaled[NUMERICAL_FEATURES])    
+    df_scaled[NUMERICAL_FEATURES] = scaler.transform(df_scaled[NUMERICAL_FEATURES])
     return df_scaled, scaler
 
 
