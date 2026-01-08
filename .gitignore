@@ -58,8 +58,6 @@ outputs/figures/*.png
 outputs/figures/*.jpg
 outputs/reports/*.txt
 
-# macOS
-.DS_Store
-
-# Windows
-Thumbs.db
+*.pkl
+*.keras
+*.csv
