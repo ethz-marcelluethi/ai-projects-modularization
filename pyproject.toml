@@ -33,3 +33,8 @@ packages = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+markers = [
+    "unit: Unit tests for individual functions (fast)",
+    "integration: Integration tests for complete workflows",
+    "slow: Tests that require model training or extensive computation",
+]

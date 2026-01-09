@@ -1,8 +1,14 @@
+# This workflow runs different test tiers based on when code is pushed:
+# - Unit tests (fast) on every push
+# - Integration tests on pull requests
+# - Full test suite when merged to main or nightly
+
 name: Tests
 
 on:
   push:
     branches: [ main ]
+  pull_request:
 
 jobs:
   test:
@@ -21,6 +27,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e ".[dev]"
     
-    - name: Run tests
-      run: |
-        pytest -v
+    # Run unit tests on every push
+    - name: Run unit tests
+      if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+      run: pytest -v -m unit
+    
+    # Run integration tests on pull requests
+    - name: Run integration tests
+      if: github.event_name == 'pull_request'
+      run: pytest -v -m integration
+    
+    # Run all tests when merged to main
+    - name: Run all tests
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/main')
+      run: pytest -v

@@ -7,10 +7,12 @@ Educational example showing:
 """
 
 import pandas as pd
+import pytest
 
 from src import load_raw_data
 
 
+@pytest.mark.unit
 def test_data_has_required_columns():
     """
     DATA VALIDATION: Verify loaded data has all required columns.
@@ -28,6 +30,7 @@ def test_data_has_required_columns():
         assert col in df.columns, f"Missing required column: {col}"
 
 
+@pytest.mark.unit
 def test_body_mass_in_valid_range():
     """
     DATA VALIDATION: Verify body mass values are positive and realistic.
@@ -38,8 +41,6 @@ def test_body_mass_in_valid_range():
     df = load_raw_data()
     
     body_mass = df['body_mass_g'].dropna()
-    
-    assert (body_mass > 0).all(), "All body mass values should be positive"
     
     assert (body_mass >= 2000).all(), "Body mass should be at least 2000g"
     assert (body_mass <= 6500).all(), "Body mass should not exceed 6500g"
