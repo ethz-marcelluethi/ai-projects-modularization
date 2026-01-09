@@ -35,7 +35,7 @@ def setup_test_model():
     # Create and train model with minimal epochs
     model = create_mlp_model(input_shape=X_train.shape[1])
     model = compile_model(model)
-    model, _ = train_model(X_train, y_train, model=model, epochs=10, verbose=0)
+    model, _ = train_model(X_train, y_train, model=model, epochs=50, verbose=0)
     
     # Save model for tests
     save_model(model)
@@ -46,7 +46,7 @@ def setup_test_model():
 def test_model_evaluation_meets_performance_threshold(setup_test_model):
     """
     MODEL EVALUATION: Verify trained model meets minimum performance standards.
-    """
+        """
     # Load the saved model and test data
     model = load_model()
     splits = load_train_test_split()
@@ -56,7 +56,7 @@ def test_model_evaluation_meets_performance_threshold(setup_test_model):
     
     loss, accuracy = evaluate_model(model, X_test, y_test)
     
-    assert accuracy > 0.85, f"Model accuracy {accuracy:.4f} below threshold of 0.85"
+    assert accuracy > 0.85, f"Model accuracy {accuracy:.4f} below threshold of 0.8"
     assert loss < 1.0, f"Model loss {loss:.4f} exceeds threshold of 1.0"
 
 
